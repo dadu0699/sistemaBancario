@@ -25,7 +25,8 @@ public class TransactionPanel extends Stage {
     private HBox hBox;
     private Customer customer;
 
-    private TransactionPanel() { }
+    private TransactionPanel() {
+    }
 
     public static TransactionPanel getInstance() {
         if (instance == null) {
@@ -70,7 +71,7 @@ public class TransactionPanel extends Stage {
         textTitle.setFont(new Font(40));
         scrollPane.getBottomBar().getChildren().add(textTitle);
         scrollPane.getBottomBar().alignmentProperty().setValue(Pos.CENTER_LEFT);
-        scrollPane.getBottomBar().setPadding(new Insets(0, 0, 10,30));
+        scrollPane.getBottomBar().setPadding(new Insets(0, 0, 10, 30));
         JFXScrollPane.smoothScrolling((ScrollPane) scrollPane.getChildren().get(0));
 
         int counter = 0;
@@ -130,7 +131,7 @@ public class TransactionPanel extends Stage {
             this.customer = customer;
             getPane();
         });
-        gridPane.add(buttonSelect, 0, 2, 2,1);
+        gridPane.add(buttonSelect, 0, 2, 2, 1);
 
         return gridPane;
     }
@@ -210,8 +211,8 @@ public class TransactionPanel extends Stage {
         buttonExit.setButtonType(JFXButton.ButtonType.FLAT);
         buttonExit.setOnAction(event -> restartHBox());
 
-        vBoxButtons.getChildren().addAll(buttonAgency, buttonAutobank, buttonATM, buttonCallCenter,
-                buttonCreateCheck, buttonPurchase, buttonDetail, buttonExit);
+        vBoxButtons.getChildren().addAll(buttonAgency, buttonAutobank, buttonATM, buttonCallCenter, buttonCreateCheck,
+                buttonPurchase, buttonDetail, buttonExit);
         hBox.getChildren().clear();
         hBox.getChildren().addAll(vBoxButtons, vBoxPanels);
 

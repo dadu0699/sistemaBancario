@@ -58,7 +58,7 @@ public class ViewAgency extends Stage {
                 arrayListBankingAgency.add(agency);
             }
         }
-        if (observableList != null){
+        if (observableList != null) {
             observableList.clear();
         }
         observableList = FXCollections.observableArrayList(arrayListBankingAgency);
@@ -112,21 +112,19 @@ public class ViewAgency extends Stage {
         textFieldSearch.setPromptText("BUSCAR");
         textFieldSearch.setPrefSize(x, y);
         textFieldSearch.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue,
-                                                    String newValue) ->
-                updateTableViewItems(textFieldSearch.getText().trim().toUpperCase())
-        );
+                String newValue) -> updateTableViewItems(textFieldSearch.getText().trim().toUpperCase()));
 
         JFXButton buttonReport = new JFXButton("Reporte");
         buttonReport.getStyleClass().addAll("customButton", "reportButton");
         buttonReport.setButtonType(JFXButton.ButtonType.FLAT);
         buttonReport.setPrefSize(x, y);
         buttonReport.setOnAction(event -> {
-            String[] titles = {"ID", "NOMBRE", "DIRECCIÓN", "NÚMERO TELEFÓNICO", "CAJAS", "ESCRITORIOS", "EFECTIVO",
-                    "EMPLEADOS"};
+            String[] titles = { "ID", "NOMBRE", "DIRECCIÓN", "NÚMERO TELEFÓNICO", "CAJAS", "ESCRITORIOS", "EFECTIVO",
+                    "EMPLEADOS" };
             BankingAgency[] dataBankingAgency = ControllerBankingAgency.getInstance().getBankingAgencies();
             try {
-                ReportGenerator.getInstance().generatePDF("Agencies.pdf", "AGENCIAS BANCARIAS",
-                        titles, dataBankingAgency);
+                ReportGenerator.getInstance().generatePDF("Agencies.pdf", "AGENCIAS BANCARIAS", titles,
+                        dataBankingAgency);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -218,7 +216,8 @@ public class ViewAgency extends Stage {
 class CreateBankingAgency {
     private static CreateBankingAgency instance;
 
-    private CreateBankingAgency() {}
+    private CreateBankingAgency() {
+    }
 
     static CreateBankingAgency getInstance() {
         if (instance == null) {
@@ -305,8 +304,7 @@ class CreateBankingAgency {
         buttonAdd.setButtonType(JFXButton.ButtonType.FLAT);
         buttonAdd.setPrefSize(x, y / 20);
         buttonAdd.setOnAction(event -> {
-            if (fieldName.getText().length() == 0
-                    || fieldAddress.getText().length() == 0
+            if (fieldName.getText().length() == 0 || fieldAddress.getText().length() == 0
                     || fieldPhoneNumber.getText().length() == 0
                     || !fieldPhoneNumber.getText().matches("^(?=(?:[1-9]){1})\\d{4}-\\d{4}")
                     || !Verifications.getInstance().isNumeric(spinnerNoPayOffice.getEditor().getText())
@@ -344,7 +342,8 @@ class CreateBankingAgency {
 class UpdateBankingAgency {
     private static UpdateBankingAgency instance;
 
-    private UpdateBankingAgency(){}
+    private UpdateBankingAgency() {
+    }
 
     static UpdateBankingAgency getInstance() {
         if (instance == null) {
@@ -407,24 +406,21 @@ class UpdateBankingAgency {
 
         Label labelNoPayOffice = new Label("CAJAS:");
         gridPane.add(labelNoPayOffice, 0, 7);
-        Spinner<Integer> spinnerNoPayOffice = new Spinner<>(0, 1000,
-                bankingAgency.getNoPayOffice(), 1);
+        Spinner<Integer> spinnerNoPayOffice = new Spinner<>(0, 1000, bankingAgency.getNoPayOffice(), 1);
         spinnerNoPayOffice.setEditable(true);
         spinnerNoPayOffice.setPrefWidth(x);
         gridPane.add(spinnerNoPayOffice, 1, 7);
 
         Label labelNoCustomerService = new Label("ESCRITORIOS:");
         gridPane.add(labelNoCustomerService, 0, 8);
-        Spinner<Integer> spinnerNoCustomerService = new Spinner<>(0, 100,
-                bankingAgency.getNoCustomerService(), 1);
+        Spinner<Integer> spinnerNoCustomerService = new Spinner<>(0, 100, bankingAgency.getNoCustomerService(), 1);
         spinnerNoCustomerService.setEditable(true);
         spinnerNoCustomerService.setPrefWidth(x);
         gridPane.add(spinnerNoCustomerService, 1, 8);
 
         Label labelCash = new Label("EFECTIVO:");
         gridPane.add(labelCash, 0, 9);
-        Spinner<Double> spinnerCash = new Spinner<>(0.00, 100000.00,
-                bankingAgency.getCash(), 1);
+        Spinner<Double> spinnerCash = new Spinner<>(0.00, 100000.00, bankingAgency.getCash(), 1);
         spinnerCash.setEditable(true);
         spinnerCash.setPrefWidth(x);
         gridPane.add(spinnerCash, 1, 9);
@@ -434,8 +430,7 @@ class UpdateBankingAgency {
         buttonUpdate.setButtonType(JFXButton.ButtonType.FLAT);
         buttonUpdate.setPrefSize(x, y / 20);
         buttonUpdate.setOnAction(event -> {
-            if (fieldName.getText().length() == 0
-                    || fieldAddress.getText().length() == 0
+            if (fieldName.getText().length() == 0 || fieldAddress.getText().length() == 0
                     || fieldPhoneNumber.getText().length() == 0
                     || !fieldPhoneNumber.getText().matches("^(?=(?:[1-9]){1})\\d{4}-\\d{4}")
                     || !Verifications.getInstance().isNumeric(spinnerNoPayOffice.getEditor().getText())
@@ -444,12 +439,11 @@ class UpdateBankingAgency {
                 Alert.getInstance().showAlert(gridPane, "ERROR", "UNO O MÁS DATOS SON INCORRECTOS");
             } else {
                 ControllerBankingAgency.getInstance().updateBankingAgency(bankingAgency.getId(),
-                        fieldName.getText().trim().toUpperCase(),
-                        fieldAddress.getText().trim().toUpperCase(), fieldPhoneNumber.getText().trim(),
-                        Integer.parseInt(spinnerNoPayOffice.getEditor().getText()),
+                        fieldName.getText().trim().toUpperCase(), fieldAddress.getText().trim().toUpperCase(),
+                        fieldPhoneNumber.getText().trim(), Integer.parseInt(spinnerNoPayOffice.getEditor().getText()),
                         Integer.parseInt(spinnerNoCustomerService.getEditor().getText()),
                         Double.parseDouble(spinnerCash.getEditor().getText()));
-                if (!ControllerBankingAgency.getInstance().updateBankingAgency()){
+                if (!ControllerBankingAgency.getInstance().updateBankingAgency()) {
                     Alert.getInstance().showAlert(gridPane, "ERROR", "ERROR AL MODIFICAR LA AGENCIA BANCARIA");
                 }
                 ViewAgency.getInstance().updateTableViewItems();
@@ -545,10 +539,8 @@ class ShowBankingAgency {
         buttonCopy.setOnAction(event -> {
             final Clipboard clipboard = Clipboard.getSystemClipboard();
             final ClipboardContent content = new ClipboardContent();
-            content.putString(
-                    "NOMBRE:                " + bankingAgency.getName()
-                    + "\nDIRECCIÓN:             " + bankingAgency.getAddress()
-                    + "\nNÚMERO TELEFÓNICO:     " + bankingAgency.getPhoneNumber()
+            content.putString("NOMBRE:                " + bankingAgency.getName() + "\nDIRECCIÓN:             "
+                    + bankingAgency.getAddress() + "\nNÚMERO TELEFÓNICO:     " + bankingAgency.getPhoneNumber()
                     + "\nCAJAS:                 " + bankingAgency.getNoPayOffice().toString()
                     + "\nESCRITORIOS:           " + bankingAgency.getNoCustomerService().toString()
                     + "\nEFECTIVO:              " + bankingAgency.getCash().toString());

@@ -23,7 +23,8 @@ import org.didierdominguez.view.Alert;
 public class ViewPurchase {
     private static ViewPurchase instance;
 
-    private ViewPurchase() {}
+    private ViewPurchase() {
+    }
 
     public static ViewPurchase getInstance() {
         if (instance == null) {
@@ -32,7 +33,7 @@ public class ViewPurchase {
         return instance;
     }
 
-    public void showAlertProduct(HBox hBox, String title){
+    public void showAlertProduct(HBox hBox, String title) {
         JFXAlert<String> alert = new JFXAlert<>((Stage) hBox.getScene().getWindow());
         alert.initModality(Modality.APPLICATION_MODAL);
         alert.setOverlayClose(false);
@@ -86,9 +87,9 @@ public class ViewPurchase {
             } else if (creditCard == null || creditCard.getAuthorization() == null
                     || creditCard.getCustomer() != TransactionPanel.getInstance().getCustomer()) {
                 Alert.getInstance().showAlert(gridfields, "ERROR", "LA TARJETA NO FUE ENCONTRADA");
-            }  else {
-                if ((Double.parseDouble(spinnerAmount.getEditor().getText()) + creditCard.getAmountOwed()) <=
-                        creditCard.getCreditLimit()) {
+            } else {
+                if ((Double.parseDouble(spinnerAmount.getEditor().getText()) + creditCard.getAmountOwed()) <= creditCard
+                        .getCreditLimit()) {
                     ControllerCreditCard.getInstance().updateCreditCard(creditCard.getId(),
                             (Double.parseDouble(spinnerAmount.getEditor().getText())));
                     ControllerPurchase.getInstance().createPurchase(TransactionPanel.getInstance().getCustomer(),

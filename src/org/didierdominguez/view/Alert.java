@@ -11,7 +11,8 @@ import javafx.stage.Stage;
 public class Alert extends Stage {
     private static Alert instance;
 
-    private Alert() {}
+    private Alert() {
+    }
 
     public static Alert getInstance() {
         if (instance == null) {
@@ -20,7 +21,7 @@ public class Alert extends Stage {
         return instance;
     }
 
-    public void showAlert(GridPane gridPane, String title, String description){
+    public void showAlert(GridPane gridPane, String title, String description) {
         JFXAlert<String> alert = new JFXAlert<>((Stage) gridPane.getScene().getWindow());
         alert.initModality(Modality.APPLICATION_MODAL);
         alert.setOverlayClose(false);

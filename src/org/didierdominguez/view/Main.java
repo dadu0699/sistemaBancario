@@ -127,10 +127,11 @@ public class Main extends Application {
                 stage.hide();
                 AdminPanel.getInstance().showWindow();
             } else {
-            Alert.getInstance().showAlert(gridPane, "ERROR", "EL NOMBRE DE USUARIO Y LA " +
-                    "CONTRASEÑA QUE INGRESASTE NO COINCIDEN CON NUESTROS REGISTROS. \nPOR FAVOR, " +
-                    "REVISA E INTÉNTALO DE NUEVO.");
-        }
+                Alert.getInstance().showAlert(gridPane, "ERROR",
+                        "EL NOMBRE DE USUARIO Y LA "
+                                + "CONTRASEÑA QUE INGRESASTE NO COINCIDEN CON NUESTROS REGISTROS. \nPOR FAVOR, "
+                                + "REVISA E INTÉNTALO DE NUEVO.");
+            }
         });
 
         JFXButton buttonCancel = new JFXButton("Cancelar");
