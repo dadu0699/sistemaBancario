@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="sistemaBancario:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/sistemaBancario_jar</output-path>
+    <root id="archive" name="sistemaBancario.jar">
+      <element id="module-output" name="sistemaBancario" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/jfoenix-8.0.8.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
